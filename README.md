@@ -7,16 +7,20 @@
 `docker-compose up -d`.
 5. Открыв новый терминал, запустить приложение, используя одну из баз данных, командой:
 
-- `java "-Dspring.datasource.url=jdbc:mysql://localhost:3306/app" -jar ./artifacts/aqa-shop.jar` для _MySQL_;
+для _MySQL_:
+- `java "-Dspring.datasource.url=jdbc:mysql://localhost:3306/app" -jar ./artifacts/aqa-shop.jar`
 
-- `java "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/app" -jar ./artifacts/aqa-shop.jar` для _PostgreSQL_.
+для _PostgreSQL_:
+- `java "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/app" -jar ./artifacts/aqa-shop.jar`
 
 *Примечание:* для смены БД необходимо остановить приложение комбинацией клавиш: `Ctrl + C`, затем ввести нужную команду для запуска приложения (п.5).
 
 6. Для запуска тестов в новой вкладке терминала ввести команду: 
 
 `.\gradlew clean test`.
+
 7. Для формирования отчета AllureReport по результатам тестирования в новой вкладке терминала или, нажав двойной Ctrl, ввести команду:
 
 `./gradlew allureServe`
+
 8. Сгенерированный отчет откроется в браузере автоматически. 
