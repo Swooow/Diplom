@@ -30,7 +30,7 @@
 8. Сгенерированный отчет откроется в браузере автоматически. 
 ---
 # Документация:
-[План автоматиации](https://github.com/Swooow/Diplom/blob/main/Documents/Plan.md)
+[План автоматизации](https://github.com/Swooow/Diplom/blob/main/Documents/Plan.md)
 
 [Отчёт о проведённом тестировании](https://github.com/Swooow/Diplom/blob/main/Documents/Report.md)
 
