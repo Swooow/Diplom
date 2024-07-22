@@ -7,7 +7,6 @@ import ru.netology.tourpayment.data.DataHelper;
 import ru.netology.tourpayment.data.SQLHelper;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import lombok.SneakyThrows;
-import lombok.val;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,8 +39,7 @@ public class DebitCardTest {
     @Test
     void shouldDebitByCardWithApproved() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val buyByDebit = new BuyByDebitCardPage();
+        var buyByDebit = startPage.openBuyByDebitCardPage();
         buyByDebit.fillData(DataHelper.getApprovedCard());
         buyByDebit.waitNotificationOk();
         assertEquals("APPROVED", SQLHelper.getDebitStatus());
@@ -52,8 +50,7 @@ public class DebitCardTest {
     @Test
     void shouldDebitByCardWithDecline() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val buyByDebit = new BuyByDebitCardPage();
+        var buyByDebit = startPage.openBuyByDebitCardPage();
         buyByDebit.fillData(DataHelper.getDeclinedCard());
         buyByDebit.waitNotificationError();
         assertEquals("DECLINED", SQLHelper.getDebitStatus());
@@ -63,8 +60,7 @@ public class DebitCardTest {
     @Test
     void shouldInvalidFieldMessageEmptyForm() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getEmptyForm());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -76,8 +72,7 @@ public class DebitCardTest {
     @Test
     void shouldEmptyCardNumber() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getEmptyFieldCardNumber());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -87,8 +82,7 @@ public class DebitCardTest {
     @Test
     void shouldSpaceInCardNumber() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getSpaceInFieldCardNumber());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -98,8 +92,7 @@ public class DebitCardTest {
     @Test
     void shouldCyrillicInCardNumber() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getCyrillicInFieldCardNumber());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -109,8 +102,7 @@ public class DebitCardTest {
     @Test
     void shouldLatinInCardNumber() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getLatinInFieldCardNumber());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -120,8 +112,7 @@ public class DebitCardTest {
     @Test
     void shouldSymbolsInCardNumber() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getSymbolsInFieldCardNumber());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -131,8 +122,7 @@ public class DebitCardTest {
     @Test
     void shouldIncompleteFieldCardNumber() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getIncompleteFieldCardNumber());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -142,8 +132,7 @@ public class DebitCardTest {
     @Test
     void shouldCrowdedFieldCardNumber() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val buyByDebit = new BuyByDebitCardPage();
+        var buyByDebit = startPage.openBuyByDebitCardPage();
         buyByDebit.fillData(DataHelper.getCrowdedFieldCardNumber());
         buyByDebit.waitNotificationOk();
     }
@@ -152,8 +141,7 @@ public class DebitCardTest {
     @Test
     void shouldNonExistentCard() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getNonExistentCard());
         debitPage.waitNotificationError();
     }
@@ -164,8 +152,7 @@ public class DebitCardTest {
     @Test
     void shouldEmptyMonth() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getEmptyFieldMonth());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -175,8 +162,7 @@ public class DebitCardTest {
     @Test
     void shouldSpaceInMonth() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getSpaceInFieldMonth());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -186,8 +172,7 @@ public class DebitCardTest {
     @Test
     void shouldCyrillicInMonth() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getCyrillicInFieldMonth());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -197,8 +182,7 @@ public class DebitCardTest {
     @Test
     void shouldLatinInMonth() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getLatinInFieldMonth());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -208,8 +192,7 @@ public class DebitCardTest {
     @Test
     void shouldSymbolsInMonth() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getSymbolsInFieldMonth());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -219,8 +202,7 @@ public class DebitCardTest {
     @Test
     void shouldIncompleteFieldMonth() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getIncompleteFieldMonth());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -230,8 +212,7 @@ public class DebitCardTest {
     @Test
     void shouldCrowdedFieldMonth() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val buyByDebit = new BuyByDebitCardPage();
+        var buyByDebit = startPage.openBuyByDebitCardPage();
         buyByDebit.fillData(DataHelper.getCrowdedFieldMonth());
         buyByDebit.waitNotificationOk();
     }
@@ -240,8 +221,7 @@ public class DebitCardTest {
     @Test
     void shouldZeroFieldMonth() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val buyByDebit = new BuyByDebitCardPage();
+        var buyByDebit = startPage.openBuyByDebitCardPage();
         buyByDebit.fillData(DataHelper.getZeroFieldMonth());
         assertEquals("Неверно указан срок действия карты", buyByDebit.getInputInvalid());
     }
@@ -250,8 +230,7 @@ public class DebitCardTest {
     @Test
     void shouldNonExistentFieldMonth() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val buyByDebit = new BuyByDebitCardPage();
+        var buyByDebit = startPage.openBuyByDebitCardPage();
         buyByDebit.fillData(DataHelper.getNonExistentFieldMonth());
         assertEquals("Неверно указан срок действия карты", buyByDebit.getInputInvalid());
     }
@@ -260,8 +239,7 @@ public class DebitCardTest {
     @Test
     void shouldBygoneFieldMonth() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getBygoneFieldMonth());
         assertEquals("Неверно указан срок действия карты", debitPage.getInputInvalid());
     }
@@ -272,8 +250,7 @@ public class DebitCardTest {
     @Test
     void shouldEmptyYear() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getEmptyFieldYear());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -283,8 +260,7 @@ public class DebitCardTest {
     @Test
     void shouldSpaceInYear() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getSpaceInFieldYear());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -294,8 +270,7 @@ public class DebitCardTest {
     @Test
     void shouldCyrillicInYear() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getCyrillicInFieldYear());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -305,8 +280,7 @@ public class DebitCardTest {
     @Test
     void shouldLatinInYear() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getLatinInFieldYear());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -316,8 +290,7 @@ public class DebitCardTest {
     @Test
     void shouldSymbolsInYear() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getSymbolsInFieldYear());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -327,8 +300,7 @@ public class DebitCardTest {
     @Test
     void shouldIncompleteFieldYear() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getIncompleteFieldYear());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -338,8 +310,7 @@ public class DebitCardTest {
     @Test
     void shouldCrowdedFieldYear() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val buyByDebit = new BuyByDebitCardPage();
+        var buyByDebit = startPage.openBuyByDebitCardPage();
         buyByDebit.fillData(DataHelper.getCrowdedFieldYear());
         buyByDebit.waitNotificationOk();
     }
@@ -348,8 +319,7 @@ public class DebitCardTest {
     @Test
     void shouldOverFieldYear() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val buyByDebit = new BuyByDebitCardPage();
+        var buyByDebit = startPage.openBuyByDebitCardPage();
         buyByDebit.fillData(DataHelper.getOverFieldYear());
         assertEquals("Неверно указан срок действия карты", buyByDebit.getInputInvalid());
     }
@@ -358,8 +328,7 @@ public class DebitCardTest {
     @Test
     void shouldBygoneFieldYear() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getBygoneFieldYear());
         assertEquals("Истёк срок действия карты", debitPage.getInputInvalid());
     }
@@ -370,8 +339,7 @@ public class DebitCardTest {
     @Test
     void shouldEmptyOwner() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getEmptyFieldOwner());
         debitPage.getInputInvalid();
         assertEquals("Поле обязательно для заполнения", debitPage.getInputInvalid());
@@ -381,8 +349,7 @@ public class DebitCardTest {
     @Test
     void shouldSpaceInOwner() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getSpaceInFieldOwner());
         debitPage.getInputInvalid();
         assertEquals("Поле обязательно для заполнения", debitPage.getInputInvalid());
@@ -392,8 +359,7 @@ public class DebitCardTest {
     @Test
     void shouldCyrillicInOwner() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getCyrillicInFieldOwner());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -403,8 +369,7 @@ public class DebitCardTest {
     @Test
     void shouldNumbersInOwner() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getNumbersInFieldOwner());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -414,8 +379,7 @@ public class DebitCardTest {
     @Test
     void shouldSymbolsInOwner() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getSymbolsInFieldOwner());
         debitPage.getInputInvalid();
         assertEquals("Поле обязательно для заполнения", debitPage.getInputInvalid());
@@ -425,8 +389,7 @@ public class DebitCardTest {
     @Test
     void shouldOneLatinInOwner() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getOneLatinInFieldOwner());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -436,8 +399,7 @@ public class DebitCardTest {
     @Test
     void shouldCrowdedFieldOwner() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val buyByDebit = new BuyByDebitCardPage();
+        var buyByDebit = startPage.openBuyByDebitCardPage();
         buyByDebit.fillData(DataHelper.getCrowdedFieldOwner());
         buyByDebit.waitNotificationOk();
     }
@@ -448,8 +410,7 @@ public class DebitCardTest {
     @Test
     void shouldEmptyCvc() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getEmptyFieldCvc());
         debitPage.getInputInvalid();
         assertEquals("Поле обязательно для заполнения", debitPage.getInputInvalid());
@@ -459,8 +420,7 @@ public class DebitCardTest {
     @Test
     void shouldSpaceInCvc() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getSpaceInFieldCvc());
         debitPage.getInputInvalid();
         assertEquals("Поле обязательно для заполнения", debitPage.getInputInvalid());
@@ -470,8 +430,7 @@ public class DebitCardTest {
     @Test
     void shouldCyrillicInCvc() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getCyrillicInFieldCvc());
         debitPage.getInputInvalid();
         assertEquals("Поле обязательно для заполнения", debitPage.getInputInvalid());
@@ -481,8 +440,7 @@ public class DebitCardTest {
     @Test
     void shouldLatinInCvc() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getLatinInFieldCvc());
         debitPage.getInputInvalid();
         assertEquals("Поле обязательно для заполнения", debitPage.getInputInvalid());
@@ -492,8 +450,7 @@ public class DebitCardTest {
     @Test
     void shouldSymbolsInCvc() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getSymbolsInFieldCvc());
         debitPage.getInputInvalid();
         assertEquals("Поле обязательно для заполнения", debitPage.getInputInvalid());
@@ -503,8 +460,7 @@ public class DebitCardTest {
     @Test
     void shouldIncompleteFieldCvc() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val debitPage = new BuyByDebitCardPage();
+        var debitPage = startPage.openBuyByDebitCardPage();
         debitPage.fillData(DataHelper.getIncompleteFieldCvc());
         debitPage.getInputInvalid();
         assertEquals("Неверный формат", debitPage.getInputInvalid());
@@ -514,8 +470,7 @@ public class DebitCardTest {
     @Test
     void shouldCrowdedFieldCvc() {
         StartPage startPage = new StartPage();
-        startPage.openBuyByDebitCardPage();
-        val buyByDebit = new BuyByDebitCardPage();
+        var buyByDebit = startPage.openBuyByDebitCardPage();
         buyByDebit.fillData(DataHelper.getCrowdedFieldCvc());
         buyByDebit.waitNotificationOk();
     }
